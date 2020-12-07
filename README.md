@@ -9,8 +9,8 @@ To compile the program run the following command:<br>
 And to execute it:<br>
 ```./rogue```<br>
 <br>
-Don't delete "saves" folder or you won't be able to save and load games again. <br>
-You will find the instructions in to the game. <br>
-If you have any problem with the leaderboard, just recreate the file "leaderboard.dat"<br>
-Suddenly this game works only on Linux, but you can still play it on Windows by running it on the [WSL](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab).<br>
-Unfortunately, running the game on the WSL causes rendering bugs that i haven't been able to fix.
+Do not delete the "saves" folder or you will no longer be able to save and load games <br>
+You will find the instructions in the game. <br>
+If you have problems with the leaderboard, just re-create the "leaderboard.dat" file<br>
+Suddenly this game only works on Linux, but you can still play it on Windows by running it on [WSL](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab).<br>
+Unfortunately, running the game on WSL causes rendering bugs that I haven't been able to fix.
