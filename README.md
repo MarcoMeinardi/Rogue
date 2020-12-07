@@ -11,6 +11,6 @@ And to execute it:<br>
 <br>
 Don't delete "saves" folder or you won't be able to save and load games again. <br>
 You will find the instructions in to the game. <br>
-If you have any problem with the leaderboard, try to compile and run "init_leaderebor.c", this will reset the leaderboard file.<br>
+If you have any problem with the leaderboard, just recreate the file "leaderboard.dat"<br>
 Suddenly this game works only on Linux, but you can still play it on Windows by running it on the [WSL](https://www.microsoft.com/en-us/p/ubuntu/9nblggh4msv6?activetab=pivot:overviewtab).<br>
 Unfortunately, running the game on the WSL causes rendering bugs that i haven't been able to fix.
