@@ -21,9 +21,6 @@ void print_leaderboard () {
     int position = 0;
     while (fread (player_name, sizeof (char), 10, f) == 10) {
         fread (&score, sizeof (int), 1, f);
-        if (score == -1) {
-            break;
-        }
         position++;
         mvprintw (row + 7, col / 2 - 12, "%2d", position);
         mvprintw (row + 7, col / 2 - 9, player_name);
@@ -118,39 +115,32 @@ int update_leaderboard (int score, char* player_name) {
 
     char read_player[11] = {0};
     int read_score;
-    for (int i = 0; i < MAX_PLAYERS; i++) {
-        if (score == -1) {
-            read_score = -1;
+    int cnt = 0;
+    int original = 1;
+
+    while (fread (read_player, sizeof (char), 10, f) == 10) {
+        fread (&read_score, sizeof (int), 1, f);
+        if (score > read_score || (score == read_score && !original)) {
+            fseek (f, -1 * (sizeof (int) + sizeof (char) * 10), SEEK_CUR);
             fwrite (player_name, sizeof (char), 10, f);
             fwrite (&score, sizeof (int), 1, f);
-            break;
+
+            strcpy (player_name, read_player);
+            score = read_score;
+            original = 0;
         }
-        if (fread (read_player, sizeof (char), 10, f) != 10) {
-            break;
-        }
-        fread (&read_score, sizeof (int), 1, f);
-        if (score <= read_score) {
-            continue;
-        } 
-        fseek (f, -1 * (sizeof (int) + sizeof (char) * 10), SEEK_CUR);
+        cnt++;
+    }
+    if (cnt < MAX_PLAYERS) {
         fwrite (player_name, sizeof (char), 10, f);
         fwrite (&score, sizeof (int), 1, f);
-
-        strcpy (player_name, read_player);
-        score = read_score;
     }
 
     fclose (f);
-
     return 0;
 }
 
 void reset_leaderboard () {
     FILE* f = fopen ("leaderboard.dat", "wb");
-    char* str = (char*)calloc (11, sizeof (char));
-    int n = -1;
-    fwrite (str, sizeof (char), 10, f);
-    fwrite (&n, sizeof (int), 1, f);
-    
     fclose (f);
 }
