@@ -124,6 +124,7 @@ int update_leaderboard (int score, char* player_name) {
             fseek (f, -1 * (sizeof (int) + sizeof (char) * 10), SEEK_CUR);
             fwrite (player_name, sizeof (char), 10, f);
             fwrite (&score, sizeof (int), 1, f);
+            fflush (f);
 
             strcpy (player_name, read_player);
             score = read_score;
@@ -134,6 +135,7 @@ int update_leaderboard (int score, char* player_name) {
     if (cnt < MAX_PLAYERS) {
         fwrite (player_name, sizeof (char), 10, f);
         fwrite (&score, sizeof (int), 1, f);
+        fflush (f);
     }
 
     fclose (f);
